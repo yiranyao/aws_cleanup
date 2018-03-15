@@ -1,9 +1,15 @@
 #!/usr/bin/python3
 
 import boto3
+from sys import argv
 dry_run = False
 
-listfile = open("rds_snapshot_list.csv", "r")
+try:
+    filename = argv[1]
+except IndexError:
+    filename = 'rds_snapshot_list.csv'
+
+listfile = open(filename, "r")
 delete_count = 0
 for line in listfile.readlines():
     try:
