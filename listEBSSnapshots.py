@@ -29,7 +29,7 @@ for region in regions:
     inuse_snapshots = in_use_snapshots(region['RegionName'])
 
     for snapshot in all_snapshots:
-        #if snapshot['StartTime'].replace(tzinfo=None) < cutoff_date and snapshot['SnapshotId'] not in inuse_snapshots:
+        if snapshot['StartTime'].replace(tzinfo=None) < cutoff_date and snapshot['SnapshotId'] not in inuse_snapshots:
             snapshot_str += region['RegionName'] + ',' + snapshot['SnapshotId'] + ',"' + str(snapshot['StartTime']) + '",' + str(snapshot['VolumeSize']) + 'GiB,'
             try:
                 snapshot_str += '"' + snapshot['Description'] + '",'

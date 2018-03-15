@@ -27,8 +27,7 @@ rds_string = 'Region,SnapshotID,DBInstance,CreateTime,StorageType,StorageSize,Sn
 for region in regions:
     all_rds = list_all_snapshots(region['RegionName'])
     for rds in all_rds:
-        #if rds['SnapshotCreateTime'].replace(tzinfo=None) < cutoff_date:
-        if rds['SnapshotType'] != 'automated':
+        if rds['SnapshotCreateTime'].replace(tzinfo=None) < cutoff_date and rds['SnapshotType'] != 'automated':
             rds_string += region['RegionName'] + "," + rds['DBSnapshotIdentifier'] + "," + rds['DBInstanceIdentifier'] + "," + str(rds['SnapshotCreateTime']) + "," + rds['StorageType'] + "," + str(rds['AllocatedStorage']) + "GB," + rds['SnapshotType'] + "\r\n"
 
 print (rds_string)

@@ -15,7 +15,7 @@ ami_str = 'Region,AMI ID,AMI Name,Create Date,Platform,Description,Tags\r\n'
 for region in regions:
     all_ami = list_all_ami(region['RegionName'])
     for ami in all_ami:
-        #if datetime.strptime(ami.creation_date, "%Y-%m-%dT%H:%M:%S.%fZ") < cutoff_date:
+        if datetime.strptime(ami.creation_date, "%Y-%m-%dT%H:%M:%S.%fZ") < cutoff_date:
             ami_str += region['RegionName'] + "," + ami.image_id + "," + ami.name + "," + str(ami.creation_date) + "," 
             try:
                 ami_str += str(ami.platform) + ','
